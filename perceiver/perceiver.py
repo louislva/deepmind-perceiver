@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from matplotlib.pyplot import imshow
 
 
 def checker_board(d_model):
@@ -111,7 +110,7 @@ class PerceiverBlockRepeater(nn.Module):
 
 
 class Perceiver(nn.Module):
-    def __init__(self, input_channels, latents=64, d_model=32, heads=8, latent_blocks=6, dropout=0.1,  layers=8):
+    def __init__(self, input_channels, latents=64, d_model=32, heads=8, latent_blocks=6, dropout=0.1, layers=8):
         super(Perceiver, self).__init__()
 
         self.init_latent = nn.Parameter(torch.rand((latents, d_model)))
