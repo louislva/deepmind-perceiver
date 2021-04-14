@@ -14,6 +14,9 @@ def checker_board(d_model):
     return texture
 
 
+# TODO: replace with the actual positional embedding from DeepMind's paper
+# I just took this from an "Attention is all you need" transformer I made
+# Also generalize it to 1D, 2D, ..., nD
 def pos_embedding(x):
     device = x.device
     # x.shape = (pos, n, i)
