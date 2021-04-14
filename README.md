@@ -14,7 +14,7 @@ To run this you need PyTorch installed:
 
 From `perceiver` you can import `Perceiver` or `PerceiverLogits`.
 
-Then you can use it as such:
+Then you can use it as such (or look in `examples.ipynb`):
 
 ```
 from perceiver import Perceiver
