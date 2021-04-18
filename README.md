@@ -1,10 +1,10 @@
-# DeepMind Perceiver
+# DeepMind Perceiver (in PyTorch)
 
-_DISCLAIMER: This is not official and I'm not affiliated with DeepMind._
+_Disclaimer: This is not official and I'm not affiliated with DeepMind._
 
-My implementation of DeepMind's Perceiver. You can read more about the model [on DeepMind's website](https://deepmind.com/research/publications/Perceiver-General-Perception-with-Iterative-Attention).
+My implementation of the _Perceiver: General Perception with Iterative Attention_. You can read more about the model [on DeepMind's website](https://deepmind.com/research/publications/Perceiver-General-Perception-with-Iterative-Attention).
 
-I trained an MNIST model which you can find in `models/mnist.pkl`. It get's 93.45% which is... so-so. In the bottom of this document are some to-do's that might help make it better.
+I trained an MNIST model which you can find in `models/mnist.pkl` or by using `perceiver.load_mnist_model()`. It gets 96.02% on the test-data.
 
 ## Getting started
 
@@ -61,8 +61,8 @@ model = load_mnist_model()
 
 ## TODO:
 
--   [ ] Positional embedding generalized to _n_ dimensions
+-   [x] Positional embedding generalized to _n_ dimensions (with fourier features)
+-   [ ] Train other models (like CIFAR-100 or something not in the image domain)
 -   [ ] Type indication
--   [ ] Find a better MNIST model
 -   [ ] Unit tests for components of model
 -   [ ] Package
