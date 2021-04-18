@@ -4,46 +4,6 @@ import torch.nn.functional as F
 from .positional_encoding import fourier_features
 
 
-def checker_board(d_model):
-    half = (d_model) // 2
-    texture = torch.cat([
-        torch.ones((half, 1)),
-        torch.zeros((half, 1))
-    ], dim=1).view((-1,))
-
-    return texture
-
-
-# TODO: replace with the actual positional embedding from DeepMind's paper
-# I just took this from an "Attention is all you need" transformer I made
-# Also generalize it to 1D, 2D, ..., nD
-def pos_embedding(x):
-    device = x.device
-    # x.shape = (pos, n, i)
-
-    length = x.shape[0]
-    batch_size = x.shape[1]
-    d_model = x.shape[2]
-
-    i = torch.arange(0, d_model).view(
-        (1, 1, -1)).expand(length, -1, d_model).to(device).float()
-    pos = torch.arange(0, length).view(
-        (-1, 1, 1)).expand(length, -1, d_model).to(device).float()
-
-    z = pos / 10000 ** (i / d_model)
-
-    sin = torch.sin(z)
-    cos = torch.cos(z)
-
-    sin_mask = checker_board(d_model).to(device)
-    cos_mask = -sin_mask + 1
-
-    pe = (sin_mask * sin) + (cos_mask * cos)
-    pe = pe.expand(length, batch_size, d_model)
-
-    return x + pe
-
-
 class PerceiverAttentionBlock(nn.Module):
     def __init__(self, d_model, heads, dropout):
         super(PerceiverAttentionBlock, self).__init__()
@@ -150,8 +110,6 @@ class Perceiver(nn.Module):
         # x.shape = (batch_size, d_model, pixels)
         x = x.permute(2, 0, 1)
         # x.shape (pixels, batch_size, d_model)
-
-        x = pos_embedding(x)
 
         # Transform our Z (latent)
         # z.shape = (latents, d_model)
