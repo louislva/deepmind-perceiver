@@ -21,6 +21,8 @@ from perceiver import Perceiver
 
 model = Perceiver(
     input_channels, # <- How many channels in the input? E.g. 3 for RGB.
+    input_shape, # <- How big is the input in the different dimensions? E.g. (28, 28) for MNIST
+    fourier_bands=4, # <- How many bands should the positional encoding have?
     latents=64, # <- How many latent vectors?
     d_model=32, # <- Model dimensionality. Every pixel/token/latent vector will have this size.
     heads=8, # <- How many heads in self-attention? Cross-attention always has 1 head.
@@ -37,7 +39,9 @@ from perceiver import PerceiverLogits
 
 model = PerceiverLogits(
     input_channels, # <- How many channels in the input? E.g. 3 for RGB.
+    input_shape, # <- How big is the input in the different dimensions? E.g. (28, 28) for MNIST
     output_features, # <- How many different classes? E.g. 10 for MNIST.
+    fourier_bands=4, # <- How many bands should the positional encoding have?
     latents=64, # <- How many latent vectors?
     d_model=32, # <- Model dimensionality. Every pixel/token/latent vector will have this size.
     heads=8, # <- How many heads in self-attention? Cross-attention always has 1 head.
