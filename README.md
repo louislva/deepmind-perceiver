@@ -51,7 +51,7 @@ model = PerceiverLogits(
 )
 ```
 
-To use my pre-trained MNIST model (not very good):
+To use my pre-trained MNIST model:
 
 ```
 from perceiver import load_mnist_model
